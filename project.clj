@@ -1,6 +1,8 @@
-(defproject figwheel/lein-template "0.1.0-SNAPSHOT"
+(defproject figwheel/lein-template "0.1.0"
   :description "A Leinigen template for figwheel"
-  :url "http://example.com/FIXME"
+  :url "https://github.com/bhauman/figwheel-template"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :scm {:name "git"
+        :url "https://github.com/bhauman/figwheel-template"
   :eval-in-leiningen true)
