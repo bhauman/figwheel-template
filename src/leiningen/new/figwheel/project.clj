@@ -20,4 +20,5 @@
   :figwheel {
              :http-server-root "public" ;; default and assumes "resources" 
              :server-port 3449 ;; default
+             :css-dirs ["public/resources/css"] ;; watch and update CSS
              })
