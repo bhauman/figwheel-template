@@ -5,13 +5,13 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2202"]
-                 [figwheel "0.1.0-SNAPSHOT"]
+                 [figwheel "0.1.1"]
                  [org.clojure/core.async "0.1.278.0-76b25b-alpha"]
                  [sablono "0.1.5"]
                  [om "0.6.2"]]
 
   :plugins [[lein-cljsbuild "1.0.3"]
-            [lein-figwheel "0.1.0-SNAPSHOT"]]
+            [lein-figwheel "0.1.1"]]
   :cljsbuild {
               :builds [{ :source-paths ["src"]
                          :compiler { :output-to "resources/public/js/compiled/{{sanitized}}.js"
