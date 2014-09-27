@@ -19,7 +19,7 @@
   
   :cljsbuild {
     :builds [{:id "dev"
-              :source-paths ["src"]
+              :source-paths ["src" "dev"]
               :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
                          :output-dir "resources/public/js/compiled/out"
                          :optimizations :none
