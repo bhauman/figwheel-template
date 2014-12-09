@@ -5,15 +5,15 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2202"]
-                 [com.facebook/react "0.11.1"]
-                 [figwheel "0.1.4-SNAPSHOT"]
-                 [org.clojure/core.async "0.1.278.0-76b25b-alpha"]
-                 [sablono "0.2.21"]
-                 [om "0.7.1"]]
-  
+                 [org.clojure/clojurescript "0.0-2411"]
+                 [com.facebook/react "0.11.2"]
+                 [figwheel "0.1.7-SNAPSHOT"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [sablono "0.2.22"]
+                 [om "0.8.0-beta2"]]
+
   :plugins [[lein-cljsbuild "1.0.3"]
-            [lein-figwheel "0.1.4-SNAPSHOT"]]
+            [lein-figwheel "0.1.7-SNAPSHOT"]]
 
   :source-paths ["src"]
   

@@ -9,7 +9,7 @@
 
 (println "Edits to this text should show up in your developer console.")
 
-(fw/watch-and-reload
- :jsload-callback (fn []
-                    ;; (stop-and-start-my app)
-                    ))
+(fw/start {
+  :on-jsload (fn []
+               ;; (stop-and-start-my app)
+               )})
