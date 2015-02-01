@@ -32,7 +32,7 @@ To get an interactive development environment run:
 
     lein figwheel
 
-and open your browser at [localhost:3449](http://localhost:3449)
+and open your browser at [localhost:3449](http://localhost:3449/)
 
 For more info, read [Waitin'](http://swannodette.github.io/2014/12/22/waitin/).
 
