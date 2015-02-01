@@ -29,8 +29,8 @@
              {:id "min"
               :source-paths ["src"]
               :compiler {:output-to "resources/public/{{sanitized}}.min.js"
-                                   :optimizations :advanced
-                                   :pretty-print false}}]}
+                         :optimizations :advanced
+                         :pretty-print false}}]}
 
   :figwheel {
              :http-server-root "public" ;; default and assumes "resources" 
