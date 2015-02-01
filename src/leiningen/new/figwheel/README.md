@@ -26,7 +26,7 @@ To clean all compiled files:
     lein clean
 
 The Clojurescript compiler can be slow sometimes. To help with that,
-irst-time Clojurescript developers, add the following to your bash
+first-time Clojurescript developers, add the following to your bash
 .profile:
 
     LEIN_FAST_TRAMPOLINE=y
