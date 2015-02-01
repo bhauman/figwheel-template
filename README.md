@@ -6,6 +6,16 @@ A Leinigen template to get started with figwheel.
 
     lein new figwheel hello-world
 
+### Options
+
+    `--om` Adds a bare bones Om app, including Sablono.
+    `--reagent` Adds a bare bones Reagent app.
+
+Include the options using `--` to separate them from Leiningens
+options, like so
+
+    lein new figwheel hello-world -- --om
+
 ## License
 
 Copyright © 2014 FIXME

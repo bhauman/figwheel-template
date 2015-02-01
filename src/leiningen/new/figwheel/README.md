@@ -32,9 +32,14 @@ To get an interactive development environment run:
 
     lein figwheel
 
-and open your browser at [localhost:3449](http://localhost:3449/)
+and open your browser at [localhost:3449](http://localhost:3449/).
+This will also auto compile and send all changes to the browser.
+After that you will get a Browser Connected REPL. An easy way to try
+it is:
 
-For more info, read [Waitin'](http://swannodette.github.io/2014/12/22/waitin/).
+    (js/alert "Am I connected?")
+
+and you should see an alert in the browser window.
 
 ## License
 
