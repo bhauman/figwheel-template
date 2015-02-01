@@ -1,9 +1,8 @@
 (ns {{name}}.core
-    (:require [figwheel.client :as fw] {{#om?}}
+    (:require [figwheel.client :as fw]{{#om?}}
               [om.core :as om :include-macros true]
-              [om.dom :as dom :include-macros true] {{/om?}} {{#reagent?}}
-              [reagent.core :as reagent :refer [atom]] {{/reagent?}}
-              ))
+              [om.dom :as dom :include-macros true]{{/om?}}{{#reagent?}}
+              [reagent.core :as reagent :refer [atom]]{{/reagent?}}))
 
 (enable-console-print!)
 
