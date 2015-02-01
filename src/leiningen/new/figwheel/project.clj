@@ -7,9 +7,10 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2727"]
                  [figwheel "0.2.2-SNAPSHOT"]
-                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]{{#om?}}
                  [sablono "0.2.22"]
-                 [org.omcljs/om "0.8.6"]]
+                 [org.omcljs/om "0.8.6"]{{/om?}}{{#reagent?}}
+                 [reagent "0.4.3"]{{/reagent?}}]
 
   :plugins [[lein-cljsbuild "1.0.4"]
             [lein-figwheel "0.2.2-SNAPSHOT"]]
