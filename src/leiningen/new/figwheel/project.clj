@@ -17,19 +17,19 @@
   :source-paths ["src"]
   
   :cljsbuild {
-   :builds [{:id "dev"
-             :source-paths ["src"]
-             :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
-                        :output-dir "resources/public/js/compiled/out"
-                        :optimizations :none
-                        :source-map true
-                        :source-map-timestamp true
-                        :cache-analysis true }}
-            {:id "min"
-             :source-paths ["src"]
-             :compiler {:output-to "resources/public/{{sanitized}}.min.js"
-                        :optimizations :advanced
-                        :pretty-print false}}]}
+    :builds [{:id "dev"
+              :source-paths ["src"]
+              :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
+                         :output-dir "resources/public/js/compiled/out"
+                         :optimizations :none
+                         :source-map true
+                         :source-map-timestamp true
+                         :cache-analysis true }}
+             {:id "min"
+              :source-paths ["src"]
+              :compiler {:output-to "resources/public/{{sanitized}}.min.js"
+                         :optimizations :advanced
+                         :pretty-print false}}]}
 
   :figwheel {
              :http-server-root "public" ;; default and assumes "resources" 
