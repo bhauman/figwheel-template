@@ -8,8 +8,8 @@ A Leinigen template to get started with figwheel.
 
 ### Options
 
-    `--om` Adds a bare bones Om app, including Sablono.
-    `--reagent` Adds a bare bones Reagent app.
+    --om 		Adds a bare bones Om app, including Sablono.
+    --reagent   Adds a bare bones Reagent app.
 
 Include the options using `--` to separate them from Leiningens
 options, like so
