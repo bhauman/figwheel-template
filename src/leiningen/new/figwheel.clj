@@ -42,9 +42,9 @@
     (clean-opts valid-options opts) ;; Check options for errors
     (let [data {:name name
                 :sanitized (name-to-path name)
-                :app (om? opts)
+                :om? (om? opts)
                 :reagent? (reagent? opts)}]
-      (main/info "Generating fresh 'lein new' figwheel project!")
+      (main/info "Generating fresh 'lein new' figwheel project.")
       (->files data
                ["project.clj" (render "project.clj" data)]
                ["src/{{sanitized}}/core.cljs" (render "core.cljs" data)]
