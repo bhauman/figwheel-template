@@ -16,6 +16,8 @@
             [lein-figwheel "0.2.2-SNAPSHOT"]]
 
   :source-paths ["src"]
+
+  :clean-targets ^{:protect false} ["resources/public/js/compiled"]
   
   :cljsbuild {
     :builds [{:id "dev"
