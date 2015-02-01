@@ -14,4 +14,5 @@
              ["project.clj" (render "project.clj" data)]
              ["src/{{sanitized}}/core.cljs" (render "core.cljs" data)]
              ["resources/public/index.html" (render "index.html" data)]
-             ["resources/public/css/style.css" (render "style.css" data)])))
+             ["resources/public/css/style.css" (render "style.css" data)]
+             [".gitignore" (render "gitignore" data)])))
