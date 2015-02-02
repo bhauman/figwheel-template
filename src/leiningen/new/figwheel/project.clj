@@ -22,7 +22,9 @@
   :cljsbuild {
     :builds [{:id "dev"
               :source-paths ["src"]
-              :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
+              :compiler {:main {{name}}.core
+                         :asset-path "js/compiled/out"
+                         :output-to "resources/public/js/compiled/{{sanitized}}.js"
                          :output-dir "resources/public/js/compiled/out"
                          :optimizations :none
                          :source-map true
