@@ -25,6 +25,13 @@ To clean all compiled files:
 
     lein clean
 
+To create a production build run:
+
+    lein cljsbuild once min
+
+And open your browser in `resources/public/index.html`. You will not
+get live reloading, nor a REPL. 
+
 ## License
 
 Copyright © 2014 FIXME

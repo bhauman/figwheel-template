@@ -32,7 +32,7 @@
                          :cache-analysis true }}
              {:id "min"
               :source-paths ["src"]
-              :compiler {:output-to "resources/public/compiled/{{sanitized}}.js"
+              :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
                          :optimizations :advanced
                          :pretty-print false}}]}
 
