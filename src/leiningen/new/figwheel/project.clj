@@ -27,12 +27,14 @@
                          :output-to "resources/public/js/compiled/{{sanitized}}.js"
                          :output-dir "resources/public/js/compiled/out"
                          :optimizations :none
+                         :main {{name}}.core
+                         :asset-path "js/compiled/out"
                          :source-map true
                          :source-map-timestamp true
                          :cache-analysis true }}
              {:id "min"
               :source-paths ["src"]
-              :compiler {:output-to "resources/public/{{sanitized}}.min.js"
+              :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
                          :optimizations :advanced
                          :pretty-print false}}]}
 
