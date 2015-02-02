@@ -25,6 +25,8 @@
               :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
                          :output-dir "resources/public/js/compiled/out"
                          :optimizations :none
+                         :main {{name}}.core
+                         :asset-path "js/compiled/out"
                          :source-map true
                          :source-map-timestamp true
                          :cache-analysis true }}
