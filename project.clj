@@ -1,4 +1,4 @@
-(defproject figwheel/lein-template "0.2.3"
+(defproject figwheel/lein-template "0.2.4"
   :description "A Leinigen template for figwheel"
   :url "https://github.com/bhauman/figwheel-template"
   :license {:name "Eclipse Public License"
