@@ -5,15 +5,15 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2755"]
-                 [figwheel "0.2.2-SNAPSHOT"]
+                 [org.clojure/clojurescript "0.0-2760"]
+                 [figwheel "0.2.3-SNAPSHOT"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]{{#om?}}
                  [sablono "0.2.22"]
                  [org.omcljs/om "0.8.6"]{{/om?}}{{#reagent?}}
                  [reagent "0.4.3"]{{/reagent?}}]
 
   :plugins [[lein-cljsbuild "1.0.4"]
-            [lein-figwheel "0.2.2-SNAPSHOT"]]
+            [lein-figwheel "0.2.3-SNAPSHOT"]]
 
   :source-paths ["src"]
 
@@ -21,11 +21,11 @@
   
   :cljsbuild {
     :builds [{:id "dev"
-              :source-paths ["src"]
+              :source-paths ["src" "dev_src"]
               :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
                          :output-dir "resources/public/js/compiled/out"
                          :optimizations :none
-                         :main {{name}}.core
+                         :main {{name}}.dev
                          :asset-path "js/compiled/out"
                          :source-map true
                          :source-map-timestamp true
@@ -33,6 +33,7 @@
              {:id "min"
               :source-paths ["src"]
               :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
+                         :main {{name}}.core                         
                          :optimizations :advanced
                          :pretty-print false}}]}
 
@@ -43,7 +44,8 @@
 
              ;; Server Ring Handler (optional)
              ;; if you want to embed a ring handler into the figwheel http-kit
-             ;; server
+             ;; server, this is simple ring servers, if this
+             ;; doesn't work for you just run your own server :)
              ;; :ring-handler hello_world.server/handler
 
              ;; To be able to open files in your editor from the heads up display

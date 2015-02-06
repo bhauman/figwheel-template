@@ -1,6 +1,5 @@
-(ns {{name}}.core
-    (:require [figwheel.client :as fw]{{#om?}}
-              [om.core :as om :include-macros true]
+(ns ^:figwheel-always {{name}}.core
+    (:require{{#om?}}[om.core :as om :include-macros true]
               [om.dom :as dom :include-macros true]{{/om?}}{{#reagent?}}
               [reagent.core :as reagent :refer [atom]]{{/reagent?}}))
 
@@ -28,7 +27,4 @@
                           (. js/document (getElementById "app")))
 {{/reagent?}}
 
-(fw/start {
-  :on-jsload (fn []
-               ;; (stop-and-start-my app)
-               )})
+
