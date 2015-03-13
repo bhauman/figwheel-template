@@ -11,20 +11,19 @@
 
 (defonce app-state (atom {:text "Hello world!"}))
 {{#om?}}
-
-(om/root
-  (fn [data owner]
-    (reify om/IRender
-      (render [_]
-        (dom/h1 nil (:text data)))))
-  app-state
-  {:target (. js/document (getElementById "app"))})
+(defn main []
+  (om/root
+   (fn [data owner]
+     (reify om/IRender
+       (render [_]
+         (dom/h1 nil (:text data)))))
+   app-state
+   {:target (. js/document (getElementById "app"))}))
 {{/om?}}{{#reagent?}}
 (defn hello-world []
   [:h1 (:text @app-state)])
 
-(reagent/render-component [hello-world]
-                          (. js/document (getElementById "app")))
+(defn main []
+  (reagent/render-component [hello-world]
+                            (. js/document (getElementById "app"))))
 {{/reagent?}}
-
-
