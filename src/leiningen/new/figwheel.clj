@@ -49,6 +49,11 @@
                ["project.clj" (render "project.clj" data)]
                ["src/{{sanitized}}/core.cljs" (render "core.cljs" data)]
                ["dev_src/{{sanitized}}/dev.cljs" (render "dev_core.cljs" data)]
+               ["dev_src/{{sanitized}}/polyfill.js" (render "polyfill.js" data)]
+               ["dev_src/{{sanitized}}/unit-test.js" (render "unit-test.js" data)]
+               ["dev_src/{{sanitized}}/unit-test.html" (render "unit-test.html" data)]
+               ["test/cljs/{{sanitized}}/test_runner.cljs" (render "test_runner.cljs" data)]
+               ["test/cljs/{{sanitized}}/test_core.cljs" (render "test_core.cljs" data)]
                ["resources/public/index.html" (render "index.html" data)]
                ["resources/public/css/style.css" (render "style.css" data)]
                [".gitignore" (render "gitignore" data)]))))
