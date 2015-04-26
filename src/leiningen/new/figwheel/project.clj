@@ -5,15 +5,15 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2850"]
-                 [figwheel "0.2.6"]
+                 [org.clojure/clojurescript "0.0-3165"]
+                 [figwheel "0.2.7"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]{{#om?}}
                  [sablono "0.3.4"]
                  [org.omcljs/om "0.8.8"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.0-alpha3"]{{/reagent?}}]
 
   :plugins [[lein-cljsbuild "1.0.5"]
-            [lein-figwheel "0.2.6"]]
+            [lein-figwheel "0.2.7"]]
 
   :source-paths ["src"]
 
@@ -47,7 +47,7 @@
 
              ;; Server Ring Handler (optional)
              ;; if you want to embed a ring handler into the figwheel http-kit
-             ;; server, this is simple ring servers, if this
+             ;; server, this is for simple ring servers, if this
              ;; doesn't work for you just run your own server :)
              ;; :ring-handler hello_world.server/handler
 
