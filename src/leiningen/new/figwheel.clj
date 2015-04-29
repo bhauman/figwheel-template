@@ -48,7 +48,6 @@
       (->files data
                ["project.clj" (render "project.clj" data)]
                ["src/{{sanitized}}/core.cljs" (render "core.cljs" data)]
-               ["dev_src/{{sanitized}}/dev.cljs" (render "dev_core.cljs" data)]
                ["resources/public/index.html" (render "index.html" data)]
                ["resources/public/css/style.css" (render "style.css" data)]
                [".gitignore" (render "gitignore" data)]))))
