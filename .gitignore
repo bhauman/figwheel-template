@@ -8,5 +8,6 @@ pom.xml.asc
 /.lein-*
 /.nrepl-port
 hello_world
+hello-world
 \.\#*
 \#*
