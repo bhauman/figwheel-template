@@ -12,7 +12,7 @@
                  [reagent "0.5.0-alpha3"]{{/reagent?}}]
 
   :plugins [[lein-cljsbuild "1.0.5"]
-            [lein-figwheel "0.2.9"]]
+            [lein-figwheel "0.3.0"]]
 
   :source-paths ["src"]
 
@@ -21,17 +21,14 @@
   :cljsbuild {
     :builds [{:id "dev"
               :source-paths ["src"]
-              
+
               :figwheel { :on-jsload "{{name}}.core/on-js-reload" }
 
               :compiler {:main {{name}}.core
                          :asset-path "js/compiled/out"
                          :output-to "resources/public/js/compiled/{{sanitized}}.js"
                          :output-dir "resources/public/js/compiled/out"
-                         :optimizations :none
-                         :source-map true
-                         :source-map-timestamp true
-                         :cache-analysis true }}
+                         :source-map-timestamp true }}
              {:id "min"
               :source-paths ["src"]
               :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
