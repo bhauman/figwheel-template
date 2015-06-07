@@ -17,7 +17,7 @@
   :source-paths ["src"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
-  
+
   :cljsbuild {
     :builds [{:id "dev"
               :source-paths ["src"]
@@ -32,7 +32,7 @@
              {:id "min"
               :source-paths ["src"]
               :compiler {:output-to "resources/public/js/compiled/{{sanitized}}.js"
-                         :main {{name}}.core                         
+                         :main {{name}}.core
                          :optimizations :advanced
                          :pretty-print false}}]}
 
