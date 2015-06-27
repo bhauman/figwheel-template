@@ -46,6 +46,7 @@
                 :reagent? (reagent? opts)}]
       (main/info "Generating fresh 'lein new' figwheel project.")
       (->files data
+               ["README.md" (render "README.md" data)]               
                ["project.clj" (render "project.clj" data)]
                ["src/{{sanitized}}/core.cljs" (render "core.cljs" data)]
                ["resources/public/index.html" (render "index.html" data)]
