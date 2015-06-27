@@ -12,7 +12,7 @@
                  [reagent "0.5.0"]{{/reagent?}}]
 
   :plugins [[lein-cljsbuild "1.0.5"]
-            [lein-figwheel "0.3.4"]]
+            [lein-figwheel "0.3.5"]]
 
   :source-paths ["src"]
 
