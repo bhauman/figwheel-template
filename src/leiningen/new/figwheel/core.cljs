@@ -1,7 +1,6 @@
 (ns ^:figwheel-always {{name}}.core
-    (:require{{#om?}}[om.core :as om :include-macros true]
-              [om.dom :as dom :include-macros true]{{/om?}}{{#reagent?}}
-              [reagent.core :as reagent :refer [atom]]{{/reagent?}}))
+  (:require {{#om?}}[om.core :as om :include-macros true]
+            [om.dom :as dom :include-macros true]{{/om?}}{{#reagent?}}[reagent.core :as reagent :refer [atom]]{{/reagent?}}))
 
 (enable-console-print!)
 
@@ -33,4 +32,3 @@
   ;; your application
   ;; (swap! app-state update-in [:__figwheel_counter] inc)
 )
-
