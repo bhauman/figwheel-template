@@ -1,4 +1,4 @@
-(ns ^:figwheel-always {{name}}.core
+(ns {{name}}.core
   (:require {{#om?}}[om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]{{/om?}}{{#reagent?}}[reagent.core :as reagent :refer [atom]]{{/reagent?}}))
 
