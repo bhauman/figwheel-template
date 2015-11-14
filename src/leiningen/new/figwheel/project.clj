@@ -6,13 +6,13 @@
 
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.170"]
-                 [org.clojure/core.async "0.2.371"]{{#om?}}
+                 [org.clojure/core.async "0.2.374"]{{#om?}}
                  [sablono "0.3.6"]
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.0"]{{/reagent?}}]
 
   :plugins [[lein-cljsbuild "1.1.1"]
-            [lein-figwheel "0.5.0"]]
+            [lein-figwheel "0.5.0-1"]]
 
   :source-paths ["src"]
 
