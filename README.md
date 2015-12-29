@@ -4,6 +4,9 @@ A Leinigen template to get started with figwheel.
 
 ## Usage
 
+Make sure you have the [latest version of leiningen installed](https://github.com/technomancy/leiningen#installation).
+
+
     lein new figwheel hello-world
 
 ### Options
