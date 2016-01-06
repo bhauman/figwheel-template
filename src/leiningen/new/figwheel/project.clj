@@ -22,6 +22,7 @@
               [{:id "dev"
                 :source-paths ["src"]
 
+                ;; If no code is to be run, set :figwheel true for continued automagical reloading
                 :figwheel {:on-jsload "{{name}}.core/on-js-reload"}
 
                 :compiler {:main {{name}}.core
