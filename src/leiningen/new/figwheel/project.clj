@@ -9,10 +9,10 @@
                  [org.clojure/core.async "0.2.374"]{{#om?}}
                  [sablono "0.3.6"]
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
-                 [reagent "0.5.0"]{{/reagent?}}]
+                 [reagent "0.5.1"]{{/reagent?}}]
 
   :plugins [[lein-cljsbuild "1.1.1"]
-            [lein-figwheel "0.5.0-1"]]
+            [lein-figwheel "0.5.0-3"]]
 
   :source-paths ["src"]
 
