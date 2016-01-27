@@ -39,6 +39,10 @@
    nothing but a print statment is added in core.cljs"
   [name & opts]
   (do
+    (when (= name "figwheel")
+      (main/abort
+       (str "Cannot name a figwheel project \"figwheel\" the namspace will clash.\n"
+            "Please choose a different name, maybe \"tryfig\"?")))
     (clean-opts valid-options opts) ;; Check options for errors
     (let [data {:name name
                 :sanitized (name-to-path name)
