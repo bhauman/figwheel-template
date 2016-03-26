@@ -4,18 +4,18 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :min-lein-version "2.5.3"
+  :min-lein-version "2.6.1"
   
-  :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.170"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/clojurescript "1.7.228"]
                  [org.clojure/core.async "0.2.374"
                   :exclusions [org.clojure/tools.reader]]{{#om?}}
                  [sablono "0.3.6"]
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.1"]{{/reagent?}}]
   
-  :plugins [[lein-figwheel "0.5.0-6"]
-            [lein-cljsbuild "1.1.2" :exclusions [[org.clojure/clojure]]]]
+  :plugins [[lein-figwheel "0.5.2"]
+            [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
 
   :source-paths ["src"]
 
