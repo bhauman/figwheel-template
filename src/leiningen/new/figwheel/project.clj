@@ -7,14 +7,14 @@
   :min-lein-version "2.6.1"
   
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.7.228"]
+                 [org.clojure/clojurescript "1.8.51"]
                  [org.clojure/core.async "0.2.374"
                   :exclusions [org.clojure/tools.reader]]{{#om?}}
                  [sablono "0.3.6"]
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.1"]{{/reagent?}}]
   
-  :plugins [[lein-figwheel "0.5.2"]
+  :plugins [[lein-figwheel "0.5.3"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
 
   :source-paths ["src"]
@@ -55,7 +55,8 @@
              ;; Server Ring Handler (optional)
              ;; if you want to embed a ring handler into the figwheel http-kit
              ;; server, this is for simple ring servers, if this
-             ;; doesn't work for you just run your own server :)
+             ;; doesn't work for you just run your own server :) (see lien-ring)
+             
              ;; :ring-handler hello_world.server/handler
 
              ;; To be able to open files in your editor from the heads up display
@@ -72,4 +73,18 @@
 
              ;; to configure a different figwheel logfile path
              ;; :server-logfile "tmp/logs/figwheel-logfile.log"
-             })
+             }
+
+  ;; setting up nREPL for Figwheel and ClojureScript dev
+  ;; Please see:
+  ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
+  
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.3"]
+                                  [com.cemerick/piggieback "0.2.1"]]
+                   ;; for CIDER
+                   ;; :plugins [[cider/cider-nrepl "0.12.0"]]
+                   :repl-options {; for nREPL dev you really need to limit output
+                                  :init (set! *print-length* 50)
+                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
+
+)
