@@ -67,6 +67,9 @@
              ;; emacsclient -n +$2 $1
              ;;
              ;; :open-file-command "myfile-opener"
+             
+             ;; if you are using emacsclient you can just use
+             ;; :open-file-command "emacsclient"
 
              ;; if you want to disable the REPL
              ;; :repl false
@@ -75,6 +78,7 @@
              ;; :server-logfile "tmp/logs/figwheel-logfile.log"
              }
 
+ 
   ;; setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
