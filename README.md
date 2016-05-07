@@ -64,7 +64,7 @@ If you run `lein repl` a Clojure REPL will launch.
 From this REPL prompt you can run
 
 ```
-(fig-start)
+user> (fig-start)
 ```
 
 and this will launch figwheel but will not launch the ClojureScript
@@ -73,10 +73,14 @@ REPL.
 You can launch the Figwheel ClojureScript REPL like so:
 
 ```
-(cljs-repl)
+user> (cljs-repl)
 ```
 
 Please see `dev/user.clj` for more information.
+
+Note: you should always run `lein figwheel` to verify that you have
+setup everything correctly.
+
 
 ## License
 
