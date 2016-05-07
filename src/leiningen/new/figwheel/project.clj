@@ -14,7 +14,7 @@
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.1"]{{/reagent?}}]
   
-  :plugins [[lein-figwheel "0.5.3"]
+  :plugins [[lein-figwheel "0.5.3-1"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
 
   :source-paths ["src"]
@@ -83,8 +83,10 @@
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
   
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.3"]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.3-1"]                                   
                                   [com.cemerick/piggieback "0.2.1"]]
+                   ;; need to add dev source path here to get user.clj loaded
+                   :source-paths ["src" "dev"]
                    ;; for CIDER
                    ;; :plugins [[cider/cider-nrepl "0.12.0"]]
                    :repl-options {; for nREPL dev you really need to limit output
