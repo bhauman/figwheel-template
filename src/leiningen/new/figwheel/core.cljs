@@ -4,7 +4,7 @@
 
 (enable-console-print!)
 
-(println "Edits to this text should show up in your developer console.")
+(println "This text is printed from src/{{name}}/core.cljs. Go ahead and edit it and see reloading in action.")
 
 ;; define your app data so that it doesn't get over-written on reload
 
