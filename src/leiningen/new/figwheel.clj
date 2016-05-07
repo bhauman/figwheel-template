@@ -48,7 +48,10 @@
                 :sanitized (name-to-path name)
                 :om? (om? opts)
                 :reagent? (reagent? opts)}]
-      (main/info "Generating fresh 'lein new' figwheel project.")
+      (main/info (str "Generating fresh 'lein new' figwheel project.\n\n"
+                      "Change in to your '" name "' directory and run 'lein figwheel'\n"
+                      "Wait for it to finish compiling\n"
+                      "Then open 'http://localhost:3449/index.html' in your browser"))
       (->files data
                ["README.md" (render "README.md" data)]               
                ["project.clj" (render "project.clj" data)]
