@@ -49,7 +49,7 @@
                 :om? (om? opts)
                 :reagent? (reagent? opts)}]
       (main/info (str "Generating fresh 'lein new' figwheel project.\n\n"
-                      "Change in to your '" name "' directory and run 'lein figwheel'\n"
+                      "Change into your '" name "' directory and run 'lein figwheel'\n"
                       "Wait for it to finish compiling\n"
                       "Then open 'http://localhost:3449/index.html' in your browser"))
       (->files data

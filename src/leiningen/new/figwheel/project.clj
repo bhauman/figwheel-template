@@ -14,7 +14,7 @@
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.1"]{{/reagent?}}]
   
-  :plugins [[lein-figwheel "0.5.3-1"]
+  :plugins [[lein-figwheel "0.5.4"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
 
   :source-paths ["src"]
@@ -25,8 +25,15 @@
               [{:id "dev"
                 :source-paths ["src"]
 
-                ;; If no code is to be run, set :figwheel true for continued automagical reloading
-                :figwheel {:on-jsload "{{name}}.core/on-js-reload"}
+                ;; the presence of a :figwheel configuration here
+                ;; will cause figwheel to inject the figwheel client
+                ;; into your build
+                :figwheel {:on-jsload "{{name}}.core/on-js-reload"
+                           ;; :open-urls will pop open your application
+                           ;; in the default browser once Figwheel has
+                           ;; started and complied your application.
+                           ;; Comment this out once it no longer serves you.
+                           :open-urls ["http://localhost:3449/index.html"]}
 
                 :compiler {:main {{name}}.core
                            :asset-path "js/compiled/out"
@@ -83,7 +90,8 @@
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
   
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.3-1"]                                   
+  
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.4"]
                                   [com.cemerick/piggieback "0.2.1"]]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths ["src" "dev"]
