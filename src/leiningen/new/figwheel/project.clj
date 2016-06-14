@@ -14,7 +14,7 @@
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.1"]{{/reagent?}}]
   
-  :plugins [[lein-figwheel "0.5.4-2"]
+  :plugins [[lein-figwheel "0.5.4-3"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
 
   :source-paths ["src"]
@@ -91,7 +91,7 @@
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
   
   
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.4-2"]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.4-3"]
                                   [com.cemerick/piggieback "0.2.1"]]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths ["src" "dev"]
