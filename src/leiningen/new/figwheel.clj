@@ -19,19 +19,19 @@
 (defn clean-opts
   "Takes the incoming options and compares them to the valid ones.
    It aborts the process and spits an error if an invalid option is present
-   or both --om and --reagent where selected."
+   or both --om and --reagent were selected."
   [valid-options opts]
   (let [valid-opts (map (partial str "--") valid-options)]
     (doseq [opt opts]
       (if-not (some #{opt} valid-opts)
         (apply main/abort "Unrecognized option:" opt ". Should be one of" valid-opts)))
     (if (and (om? opts) (reagent? opts))
-      (main/abort "Both --om and --reagent where selected. Please choose one")
+      (main/abort "Both --om and --reagent were selected. Please choose one")
       valid-opts)))
 
 (defn figwheel
   "Takes a name and options with the form --option and produces an interactive
-   ClojureScript + Fighweel template.
+   ClojureScript + Figwheel template.
    The valid options are:
      --om      which adds a minimal Om application in core.cljs
      --reagent which adds a minimal Reagent application in core.cljs
