@@ -13,6 +13,7 @@ Make sure you have the [latest version of leiningen installed](https://github.co
 
     --om 		Adds a bare bones Om app, including Sablono.
     --reagent   Adds a bare bones Reagent app.
+    --rum       Adds a bare bones Rum app.
 
 Include the options using `--` to separate them from Leiningens
 options, like so
