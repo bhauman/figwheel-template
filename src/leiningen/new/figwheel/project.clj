@@ -5,15 +5,16 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :min-lein-version "2.6.1"
-  
+
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.8.51"]
                  [org.clojure/core.async "0.2.374"
                   :exclusions [org.clojure/tools.reader]]{{#om?}}
                  [sablono "0.3.6"]
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
-                 [reagent "0.5.1"]{{/reagent?}}]
-  
+                 [reagent "0.5.1"]{{/reagent?}}{{#rum?}}
+                 [rum "0.10.2"]{{/rum?}}]
+
   :plugins [[lein-figwheel "0.5.4-7"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
 
@@ -54,7 +55,7 @@
              ;; :server-port 3449 ;; default
              ;; :server-ip "127.0.0.1"
 
-             :css-dirs ["resources/public/css"] ;; watch and update CSS
+             :css-dirs ["resources/public/css"]} ;; watch and update CSS
 
              ;; Start an nREPL server into the running figwheel process
              ;; :nrepl-port 7888
@@ -63,7 +64,7 @@
              ;; if you want to embed a ring handler into the figwheel http-kit
              ;; server, this is for simple ring servers, if this
              ;; doesn't work for you just run your own server :) (see lien-ring)
-             
+
              ;; :ring-handler hello_world.server/handler
 
              ;; To be able to open files in your editor from the heads up display
@@ -74,7 +75,7 @@
              ;; emacsclient -n +$2 $1
              ;;
              ;; :open-file-command "myfile-opener"
-             
+
              ;; if you are using emacsclient you can just use
              ;; :open-file-command "emacsclient"
 
@@ -83,14 +84,12 @@
 
              ;; to configure a different figwheel logfile path
              ;; :server-logfile "tmp/logs/figwheel-logfile.log"
-             }
 
- 
+
+
   ;; setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
-  
-  
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.4-7"]
                                   [com.cemerick/piggieback "0.2.1"]]
                    ;; need to add dev source path here to get user.clj loaded
@@ -99,6 +98,4 @@
                    ;; :plugins [[cider/cider-nrepl "0.12.0"]]
                    :repl-options {; for nREPL dev you really need to limit output
                                   :init (set! *print-length* 50)
-                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
-
-)
+                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}})
