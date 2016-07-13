@@ -1,6 +1,6 @@
 (ns {{name}}.core
   (:require {{#om?}}[om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]{{/om?}}{{#reagent?}}[reagent.core :as reagent :refer [atom]]{{/reagent?}}))
+            [om.dom :as dom :include-macros true]{{/om?}}{{#reagent?}}[reagent.core :as reagent :refer [atom]]{{/reagent?}}{{#rum?}}[rum.core :as rum]{{/rum?}}))
 
 (enable-console-print!)
 
@@ -25,7 +25,14 @@
 (reagent/render-component [hello-world]
                           (. js/document (getElementById "app")))
 {{/reagent?}}
+{{#rum?}}
 
+(rum/defc hello-world []
+    [:h1 (:text @app-state)])
+
+(rum/mount (hello-world)
+           (. js/document (getElementById "app")))
+{{/rum?}}
 
 (defn on-js-reload []
   ;; optionally touch your app-state to force rerendering depending on
