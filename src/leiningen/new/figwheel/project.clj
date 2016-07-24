@@ -7,12 +7,15 @@
   :min-lein-version "2.6.1"
   
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.8.51"]
-                 [org.clojure/core.async "0.2.374"
+                 [org.clojure/clojurescript "1.9.89"]
+                 [org.clojure/core.async "0.2.385"
                   :exclusions [org.clojure/tools.reader]]{{#om?}}
-                 [sablono "0.3.6"]
+                 [cljsjs/react "15.2.1-1"]
+                 [cljsjs/react-dom "15.2.1-1"]
+                 [sablono "0.7.3"]
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
-                 [reagent "0.5.1"]{{/reagent?}}]
+                 [reagent "0.5.1"]{{/reagent?}}
+                 [binaryage/devtools "0.7.2"]]
   
   :plugins [[lein-figwheel "0.5.4-7"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
@@ -39,7 +42,10 @@
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/{{sanitized}}.js"
                            :output-dir "resources/public/js/compiled/out"
-                           :source-map-timestamp true}}
+                           :source-map-timestamp true
+                           ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
+                           ;; https://github.com/binaryage/cljs-devtools
+                           :preloads [devtools.preload]}}
                ;; This next build is an compressed minified build for
                ;; production. You can build this with:
                ;; lein cljsbuild once min
