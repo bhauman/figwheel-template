@@ -68,7 +68,7 @@
              ;; Server Ring Handler (optional)
              ;; if you want to embed a ring handler into the figwheel http-kit
              ;; server, this is for simple ring servers, if this
-             ;; doesn't work for you just run your own server :) (see lien-ring)
+             ;; doesn't work for you just run your own server :) (see lein-ring)
              
              ;; :ring-handler hello_world.server/handler
 
