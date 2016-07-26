@@ -15,7 +15,7 @@
                  [sablono "0.7.3"]
                  [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.1"]{{/reagent?}}{{#rum?}}
-                 [rum "0.10.2"]{{/rum?}}]
+                 [rum "0.10.2"]{{/rum?}}
                  [binaryage/devtools "0.7.2"]]
 
   :plugins [[lein-figwheel "0.5.4-7"]
