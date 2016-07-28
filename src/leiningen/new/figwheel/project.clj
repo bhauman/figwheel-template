@@ -13,7 +13,7 @@
                  [cljsjs/react "15.2.1-1"]
                  [cljsjs/react-dom "15.2.1-1"]
                  [sablono "0.7.3"]
-                 [org.omcljs/om "0.9.0"]{{/om?}}{{#reagent?}}
+                 [org.omcljs/om "1.0.0-alpha40"]{{/om?}}{{#reagent?}}
                  [reagent "0.5.1"]{{/reagent?}}
                  [binaryage/devtools "0.7.2"]]
   
