@@ -1,6 +1,6 @@
 # figwheel-template
 
-A Leinigen template to get started with figwheel.
+A Leinigen template to get started with [Figwheel](https://github.com/bhauman/lein-figwheel).
 
 ## Usage
 
