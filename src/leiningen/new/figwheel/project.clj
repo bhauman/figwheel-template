@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :min-lein-version "2.6.1"
-  
+
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.89"]
                  [org.clojure/core.async "0.2.385"
@@ -14,9 +14,9 @@
                  [cljsjs/react-dom "15.2.1-1"]
                  [sablono "0.7.3"]
                  [org.omcljs/om "1.0.0-alpha40"]{{/om?}}{{#reagent?}}
-                 [reagent "0.5.1"]{{/reagent?}}
-                 [binaryage/devtools "0.7.2"]]
-  
+                 [reagent "0.5.1"]{{/reagent?}}{{#rum?}}
+                 [rum "0.10.2"]{{/rum?}}]
+
   :plugins [[lein-figwheel "0.5.4-7"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
 
@@ -68,8 +68,9 @@
              ;; Server Ring Handler (optional)
              ;; if you want to embed a ring handler into the figwheel http-kit
              ;; server, this is for simple ring servers, if this
+
              ;; doesn't work for you just run your own server :) (see lein-ring)
-             
+
              ;; :ring-handler hello_world.server/handler
 
              ;; To be able to open files in your editor from the heads up display
@@ -80,7 +81,7 @@
              ;; emacsclient -n +$2 $1
              ;;
              ;; :open-file-command "myfile-opener"
-             
+
              ;; if you are using emacsclient you can just use
              ;; :open-file-command "emacsclient"
 
@@ -91,13 +92,14 @@
              ;; :server-logfile "tmp/logs/figwheel-logfile.log"
              }
 
- 
+
   ;; setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
-  
-  
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.4-7"]
+
+
+  :profiles {:dev {:dependencies [[binaryage/devtools "0.7.2"]
+                                  [figwheel-sidecar "0.5.4-7"]
                                   [com.cemerick/piggieback "0.2.1"]]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths ["src" "dev"]
