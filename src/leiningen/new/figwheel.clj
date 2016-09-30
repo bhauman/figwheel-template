@@ -4,7 +4,6 @@
 
 (def render (renderer "figwheel"))
 
-
 ;; Check if om or reagent are in the options
 ;; Copied from: https://github.com/plexus/chestnut/blob/master/src/leiningen/new/chestnut.clj
 
@@ -14,7 +13,7 @@
 (doseq [opt valid-options]
   (eval
    `(defn ~(symbol (str opt "?")) [opts#]
-     (some #{~(str "--" opt)} opts#))))
+      (some #{~(str "--" opt)} opts#))))
 
 (defn valid-number-of-opts? [opts]
     (let [count 0
