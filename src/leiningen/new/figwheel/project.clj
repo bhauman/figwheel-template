@@ -22,8 +22,6 @@
 
   :source-paths ["src"]
 
-  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
-
   :cljsbuild {:builds
               [{:id "dev"
                 :source-paths ["src"]
@@ -90,14 +88,15 @@
 
              ;; to configure a different figwheel logfile path
              ;; :server-logfile "tmp/logs/figwheel-logfile.log"
+
+             ;; to pipe all the output to the repl
+             ;; :server-logfile false
              }
 
 
   ;; setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
-
-
   :profiles {:dev {:dependencies [[binaryage/devtools "0.9.0"]
                                   [figwheel-sidecar "0.5.9"]
                                   [com.cemerick/piggieback "0.2.1"]]
@@ -105,6 +104,7 @@
                    :source-paths ["src" "dev"]
                    ;; for CIDER
                    ;; :plugins [[cider/cider-nrepl "0.12.0"]]
-                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
-
-)
+                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+                   ;; need to add the compliled assets to the :clean-targets
+                   :clean-targets ^{:protect false} ["resources/public/js/compiled"
+                                                     :target-path]}})
