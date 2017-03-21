@@ -26,13 +26,13 @@
               [{:id "dev"
                 :source-paths ["src"]
 
-                ;; the presence of a :figwheel configuration here
+                ;; The presence of a :figwheel configuration here
                 ;; will cause figwheel to inject the figwheel client
                 ;; into your build
                 :figwheel {:on-jsload "{{name}}.core/on-js-reload"
                            ;; :open-urls will pop open your application
                            ;; in the default browser once Figwheel has
-                           ;; started and complied your application.
+                           ;; started and compiled your application.
                            ;; Comment this out once it no longer serves you.
                            :open-urls ["http://localhost:3449/index.html"]}
 
@@ -44,7 +44,7 @@
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
                            :preloads [devtools.preload]}}
-               ;; This next build is an compressed minified build for
+               ;; This next build is a compressed minified build for
                ;; production. You can build this with:
                ;; lein cljsbuild once min
                {:id "min"
@@ -94,7 +94,7 @@
              }
 
 
-  ;; setting up nREPL for Figwheel and ClojureScript dev
+  ;; Setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
   :profiles {:dev {:dependencies [[binaryage/devtools "0.9.0"]
