@@ -8,7 +8,7 @@
 ;; Copied from: https://github.com/plexus/chestnut/blob/master/src/leiningen/new/chestnut.clj
 
 (def valid-options
-  ["om" "reagent" "rum"])
+  ["om" "reagent" "rum" "react"])
 
 (doseq [opt valid-options]
   (eval
@@ -18,6 +18,7 @@
 (defn valid-number-of-opts? [opts]
     (let [count 0
           count (if (om? opts) (inc count) count)
+          count (if (react? opts) (inc count) count)
           count (if (reagent? opts) (inc count) count)
           count (if (rum? opts) (inc count) count)]
         (or (= count 0) (= count 1))))
@@ -39,9 +40,10 @@
   "Takes a name and options with the form --option and produces an interactive
    ClojureScript + Figwheel template.
    The valid options are:
-     --om      which adds a minimal Om application in core.cljs
+     --react   which adds a minimal Ract application in core.cljs
      --reagent which adds a minimal Reagent application in core.cljs
      --rum     which adds a minimal Rum application in core.cljs
+     --om      which adds a minimal Om application in core.cljs
    Only one option can be specified at a time. If no option is specified,
    nothing but a print statment is added in core.cljs"
   [name & opts]
@@ -54,6 +56,7 @@
     (let [data {:name name
                 :sanitized (name-to-path name)
                 :om? (om? opts)
+                :react? (react? opts)
                 :reagent? (reagent? opts)
                 :rum? (rum? opts)}]
       (main/info (str "Generating fresh 'lein new' figwheel project.\n\n"
