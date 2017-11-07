@@ -1,6 +1,7 @@
 (ns leiningen.new.figwheel
   (:require [leiningen.new.templates :refer [renderer name-to-path ->files]]
-            [leiningen.core.main :as main]))
+            [leiningen.core.main :as main]
+            [clojure.string :as string]))
 
 (def render (renderer "figwheel"))
 
@@ -36,6 +37,13 @@
       (main/abort "Multiple options can't be specified at the same time. Please choose only one.")
       valid-opts)))
 
+(defn java9? []
+  (-> (System/getProperty "java.version")
+      (string/split #"_")
+      first
+      (compare "9.0.0")
+      (>= 0)))
+
 (defn figwheel
   "Takes a name and options with the form --option and produces an interactive
    ClojureScript + Figwheel template.
@@ -58,7 +66,8 @@
                 :om? (om? opts)
                 :react? (react? opts)
                 :reagent? (reagent? opts)
-                :rum? (rum? opts)}]
+                :rum? (rum? opts)
+                :java9? (java9?)}]
       (main/info (str "Generating fresh 'lein new' figwheel project.\n\n"
                       "Change into your '" name "' directory and run 'lein figwheel'\n"
                       "Wait for it to finish compiling\n"
