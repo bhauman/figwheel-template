@@ -109,8 +109,8 @@
                                   [cider/piggieback "0.3.1"]]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths ["src" "dev"]
-                   ;; for CIDER
-                   ;; :plugins [[cider/cider-nrepl "0.12.0"]]
+                   ;; for CIDER. Note that you should use the snapshot version, so it matches with the elpa dependency.
+                   ;; :plugins [[cider/cider-nrepl "0.18.0-SNAPSHOT"]]
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
                    ;; need to add the compliled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
