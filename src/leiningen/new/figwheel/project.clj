@@ -112,6 +112,6 @@
                    ;; for CIDER. Note that you should use the snapshot version, so it matches with the elpa dependency.
                    ;; :plugins [[cider/cider-nrepl "0.18.0-SNAPSHOT"]]
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
-                   ;; need to add the compliled assets to the :clean-targets
+                   ;; need to add the compiled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                                      :target-path]}})
