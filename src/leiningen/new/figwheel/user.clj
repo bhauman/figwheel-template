@@ -22,7 +22,7 @@
 (defn fig-start
   "This starts the figwheel server and watch based auto-compiler."
   []
-  ;; this call will only work are long as your :cljsbuild and
+  ;; this call will only work as long as your :cljsbuild and
   ;; :figwheel configurations are at the top level of your project.clj
   ;; and are not spread across different lein profiles
 
