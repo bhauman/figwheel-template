@@ -37,13 +37,6 @@
       (main/abort "Multiple options can't be specified at the same time. Please choose only one.")
       valid-opts)))
 
-(defn java9? []
-  (-> (System/getProperty "java.version")
-      (string/split #"_")
-      first
-      (compare "9.0.0")
-      (>= 0)))
-
 (defn figwheel
   "Takes a name and options with the form --option and produces an interactive
    ClojureScript + Figwheel template.
@@ -66,12 +59,12 @@
                 :om? (om? opts)
                 :react? (react? opts)
                 :reagent? (reagent? opts)
-                :rum? (rum? opts)
-                :java9? (java9?)}]
+                :rum? (rum? opts)}]
       (main/info (str "Generating fresh 'lein new' figwheel project.\n\n"
                       "Change into your '" name "' directory and run 'lein figwheel'\n"
                       "Wait for it to finish compiling\n"
-                      "Then open 'http://localhost:3449/index.html' in your browser"))
+                      "A browser window should open to the demo application, if not\n"
+                      "then open 'http://localhost:3449/index.html' in your browser"))
       (->files data
                ["README.md" (render "README.md" data)]
                ["project.clj" (render "project.clj" data)]
