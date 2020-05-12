@@ -7,19 +7,15 @@
   :min-lein-version "2.9.1"
 
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [org.clojure/clojurescript "1.10.520"]
+                 [org.clojure/clojurescript "1.10.758"]
                  [org.clojure/core.async  "0.4.500"]{{#react?}}
-                 [cljsjs/react "16.6.0-0"]
-                 [cljsjs/react-dom "16.6.0-0"]
-                 [sablono "0.8.6"]{{/react?}}{{#om?}}
-                 [cljsjs/react "15.6.1-1"]
-                 [cljsjs/react-dom "15.6.1-1"]
-                 [sablono "0.8.3"]
-                 [org.omcljs/om "1.0.0-beta4"]{{/om?}}{{#reagent?}}
-                 [reagent "0.8.1"]{{/reagent?}}{{#rum?}}
-                 [rum "0.11.3"]{{/rum?}}]
+                 {{^bundle?}}[cljsjs/react "16.6.0-0"]
+                 [cljsjs/react-dom "16.6.0-0"]{{/bundle?}}
+                 [sablono "0.8.6"]{{/react?}}{{#reagent?}}
+                 [reagent "0.10.0"{{#bundle?}} :exclusions [cljsjs/react cljsjs/react-dom cljsjs/react-dom-server]{{/bundle?}}]{{/reagent?}}{{#rum?}}
+                 [rum "0.11.5"]{{/rum?}}]
 
-  :plugins [[lein-figwheel "0.5.19"]
+  :plugins [[lein-figwheel "0.5.20"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
 
   :source-paths ["src"]
@@ -38,11 +34,14 @@
                            ;; Comment this out once it no longer serves you.
                            :open-urls ["http://localhost:3449/index.html"]}
 
-                :compiler {:main {{name}}.core
+                :compiler {:main {{name}}.core{{#bundle?}}
+                           :target :bundle{{/bundle?}}
                            :asset-path "js/compiled/out"
-                           :output-to "resources/public/js/compiled/{{sanitized}}.js"
+                           :output-to "resources/public/js/compiled/{{^bundle?}}{{sanitized}}.js{{/bundle?}}{{#bundle?}}out/index.js{{/bundle?}}"
                            :output-dir "resources/public/js/compiled/out"
-                           :source-map-timestamp true
+                           {{#bundle?}}:bundle-cmd {:none ["npx" "webpack" "--mode=development"]
+                                        :default ["npx" "webpack"]}
+                           {{/bundle?}}:source-map-timestamp true
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
                            :preloads [devtools.preload]}}
@@ -95,8 +94,8 @@
              ;; :server-logfile false
              }
 
-  :profiles {:dev {:dependencies [[binaryage/devtools "0.9.10"]
-                                  [figwheel-sidecar "0.5.19"]]
+  :profiles {:dev {:dependencies [[binaryage/devtools "1.0.0"]
+                                  [figwheel-sidecar "0.5.20"]]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths ["src" "dev"]
                    ;; need to add the compliled assets to the :clean-targets

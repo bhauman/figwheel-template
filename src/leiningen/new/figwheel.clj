@@ -8,43 +8,71 @@
 ;; Check if om or reagent are in the options
 ;; Copied from: https://github.com/plexus/chestnut/blob/master/src/leiningen/new/chestnut.clj
 
-(def valid-options
-  ["om" "reagent" "rum" "react"])
+;; I copy this levenshtein impl everywhere
+(defn- next-row
+  [previous current other-seq]
+  (reduce
+    (fn [row [diagonal above other]]
+      (let [update-val (if (= other current)
+                          diagonal
+                          (inc (min diagonal above (peek row))))]
+        (conj row update-val)))
+    [(inc (first previous))]
+    (map vector previous (next previous) other-seq)))
 
-(doseq [opt valid-options]
-  (eval
-   `(defn ~(symbol (str opt "?")) [opts#]
-      (some #{~(str "--" opt)} opts#))))
+(defn- levenshtein
+  [sequence1 sequence2]
+  (peek
+    (reduce (fn [previous current] (next-row previous current sequence2))
+            (map #(identity %2) (cons nil sequence2) (range))
+            sequence1)))
 
-(defn valid-number-of-opts? [opts]
-    (let [count 0
-          count (if (om? opts) (inc count) count)
-          count (if (react? opts) (inc count) count)
-          count (if (reagent? opts) (inc count) count)
-          count (if (rum? opts) (inc count) count)]
-        (or (= count 0) (= count 1))))
+(defn- similar [ky ky2]
+  (let [dist (levenshtein (str ky) (str ky2))]
+    (when (<= dist 2) dist)))
 
-(defn clean-opts
-  "Takes the incoming options and compares them to the valid ones.
-   It aborts the process and spits an error if an invalid option is present
-   or more then one options was specified."
-  [valid-options opts]
-  (let [valid-opts (map (partial str "--") valid-options)]
-    (doseq [opt opts]
-      (if-not (some #{opt} valid-opts)
-        (apply main/abort "Unrecognized option:" opt ". Should be one of" valid-opts)))
-    (if (not (valid-number-of-opts? opts))
-      (main/abort "Multiple options can't be specified at the same time. Please choose only one.")
-      valid-opts)))
+(def supported-frameworks #{"reagent" "rum" "react"})
+
+(def framework-opts (set (map #(str "--" %) supported-frameworks)))
+
+(def supported-attributes #{"no-bundle"})
+
+(def attribute-opts (set (map #(str "+" %) supported-attributes)))
+
+(defn similar-options [opt]
+  (second (first (sort-by first
+                  (filter first (map (juxt (partial similar opt) identity)
+                                     (concat framework-opts attribute-opts)))))))
+
+(defn parse-opts [opts]
+  (reduce (fn [accum opt]
+            (cond 
+              (framework-opts opt) (assoc accum :framework (keyword (subs opt 2)))
+              (attribute-opts opt) (update accum :attributes
+                                           (fnil conj #{})
+                                           (keyword (subs opt 1)))
+              :else
+              (let [suggestion (similar-options opt)]
+                (throw
+                 (ex-info (format "Unknown option '%s' %s"
+                                  opt
+                                  (str
+                                   (when suggestion
+                                     (format "\n    --> Perhaps you intended to use the '%s' option?" suggestion))))
+                          {:opts opts
+                           ::error true})))))
+          {} opts))
+
+#_ (parse-opts ["--om" "+no-bundle"])
 
 (defn figwheel
   "Takes a name and options with the form --option and produces an interactive
    ClojureScript + Figwheel template.
    The valid options are:
-     --react   which adds a minimal Ract application in core.cljs
-     --reagent which adds a minimal Reagent application in core.cljs
-     --rum     which adds a minimal Rum application in core.cljs
-     --om      which adds a minimal Om application in core.cljs
+     --react    which adds a minimal Ract application in core.cljs
+     --reagent  which adds a minimal Reagent application in core.cljs
+     --rum      which adds a minimal Rum application in core.cljs
+     +no-bundle don't include npm bundle support
    Only one option can be specified at a time. If no option is specified,
    nothing but a print statment is added in core.cljs"
   [name & opts]
@@ -53,23 +81,31 @@
       (main/abort
        (str "Cannot name a figwheel project \"figwheel\" the namespace will clash.\n"
             "Please choose a different name, maybe \"tryfig\"?")))
-    (clean-opts valid-options opts) ;; Check options for errors
-    (let [data {:name name
+    (let [{:keys [framework attributes]} (parse-opts opts)
+          bundle? (not (get attributes :no-bundle))
+          data {:name      name
                 :sanitized (name-to-path name)
-                :om? (om? opts)
-                :react? (react? opts)
-                :reagent? (reagent? opts)
-                :rum? (rum? opts)}]
+                :react?    (= :react framework)
+                :reagent?  (= :reagent framework)
+                :rum?      (= :rum framework)
+                :bundle?   bundle?
+                :reactdep? (boolean (#{:om :react :reagent} framework))}]
       (main/info (str "Generating fresh 'lein new' figwheel project.\n\n"
-                      "Change into your '" name "' directory and run 'lein figwheel'\n"
+                      "Change into your '" name "' directory\n\n"
+                      (when bundle?
+                        "Install npm dependencies via 'npm install'\n")
+                      "Then run 'lein figwheel'\n"
                       "Wait for it to finish compiling\n"
                       "A browser window should open to the demo application, if not\n"
                       "then open 'http://localhost:3449/index.html' in your browser"))
-      (->files data
-               ["README.md" (render "README.md" data)]
-               ["project.clj" (render "project.clj" data)]
-               ["dev/user.clj" (render "user.clj" data)]
-               ["src/{{sanitized}}/core.cljs" (render "core.cljs" data)]
-               ["resources/public/index.html" (render "index.html" data)]
-               ["resources/public/css/style.css" (render "style.css" data)]
-               [".gitignore" (render "gitignore" data)]))))
+      (apply ->files data
+             (cond-> [["README.md" (render "README.md" data)]
+                      ["project.clj" (render "project.clj" data)]
+                      ["dev/user.clj" (render "user.clj" data)]
+                      ["src/{{sanitized}}/core.cljs" (render "core.cljs" data)]
+                      ["resources/public/index.html" (render "index.html" data)]
+                      ["resources/public/css/style.css" (render "style.css" data)]
+                      [".gitignore" (render "gitignore" data)]]
+               bundle?
+               (concat [["package.json" (render "package.json" data)]
+                        ["webpack.config.js" (render "webpack.config.js" data)]]))))))

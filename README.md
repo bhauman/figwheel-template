@@ -11,19 +11,23 @@ Make sure you have the [latest version of leiningen installed](https://github.co
 
 ### Options
 
+    --react     Adds a bare bones React app, including Sablono.
     --reagent   Adds a bare bones Reagent app.
     --rum       Adds a bare bones Rum app.
-    --om 		Adds a bare bones Om app, including Sablono.
-
+    +no-bundle  Generates a project without npm and webpack support.
 
 Include the options using `--` to separate them from Leiningens
 options, like so
 
-    lein new figwheel hello-world -- --om
+    lein new figwheel hello-world -- --reagent
 
 ## Usage
 
 To get an interactive development environment run 
+
+	npm install
+	
+and then
 
     lein figwheel
 
@@ -56,6 +60,10 @@ To create a production build run:
 And open your browser in `resources/public/index.html`. You will not
 get live reloading, nor a REPL. 
 
+## Npm dependencies
+
+The generated project is compatible with Webpack and npm and you can
+add JavaScript dependencies via the normal `npm install` route.
 
 ## From the Clojure REPL
 
@@ -86,7 +94,7 @@ setup everything correctly.
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2020 Bruce Hauman
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

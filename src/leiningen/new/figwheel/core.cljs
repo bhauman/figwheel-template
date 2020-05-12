@@ -1,8 +1,9 @@
 (ns {{name}}.core
     (:require {{#react?}}[react]
               [react-dom]
-              [sablono.core :as sab :include-macros true]{{/react?}}{{#om?}}[om.core :as om :include-macros true]
-              [om.dom :as dom :include-macros true]{{/om?}}{{#reagent?}}[reagent.core :as reagent :refer [atom]]{{/reagent?}}{{#rum?}}[rum.core :as rum]{{/rum?}}))
+              [sablono.core :as sab :include-macros true]{{/react?}}{{#reagent?}}
+              [reagent.core :as reagent :refer [atom]]
+              [reagent.dom :as rd]{{/reagent?}}{{#rum?}}[rum.core :as rum]{{/rum?}}))
 
 (enable-console-print!)
 
@@ -18,27 +19,17 @@
              [:h1 (:text @state)]
              [:h3 "Edit this and watch it change!"]]))
 
-(js/ReactDOM.render
+({{#bundle?}}react-dom/render{{/bundle?}}{{^bundle?}}js/ReactDOM.render{{/bundle?}}
  (hello-world app-state)
  (. js/document (getElementById "app")))
-{{/react?}}{{#om?}}
-(om/root
-  (fn [data owner]
-    (reify om/IRender
-      (render [_]
-        (dom/div nil
-                 (dom/h1 nil (:text data))
-                 (dom/h3 nil "Edit this and watch it change!")))))
-  app-state
-  {:target (. js/document (getElementById "app"))})
-{{/om?}}{{#reagent?}}
+{{/react?}}{{#reagent?}}
 (defn hello-world []
   [:div
    [:h1 (:text @app-state)]
    [:h3 "Edit this and watch it change!"]])
 
-(reagent/render-component [hello-world]
-                          (. js/document (getElementById "app")))
+(rd/render [hello-world]
+           (. js/document (getElementById "app")))
 {{/reagent?}}{{#rum?}}
 (rum/defc hello-world []
   [:div
