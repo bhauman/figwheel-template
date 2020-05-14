@@ -10,6 +10,8 @@ FIXME: Write a paragraph about the library/project and highlight its goals.
 
 To get an interactive development environment run:
 
+{{#bundle?}}
+    npm install{{/bundle?}}
     lein figwheel
 
 and open your browser at [localhost:3449](http://localhost:3449/).

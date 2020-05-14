@@ -7,7 +7,7 @@
   :min-lein-version "2.9.1"
 
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [org.clojure/clojurescript "1.10.758"]
+                 [org.clojure/clojurescript "1.10.764"]
                  [org.clojure/core.async  "0.4.500"]{{#react?}}
                  {{^bundle?}}[cljsjs/react "16.6.0-0"]
                  [cljsjs/react-dom "16.6.0-0"]{{/bundle?}}
