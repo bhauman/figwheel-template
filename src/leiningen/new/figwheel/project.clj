@@ -98,6 +98,6 @@
                                   [figwheel-sidecar "0.5.20"]]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths ["src" "dev"]
-                   ;; need to add the compliled assets to the :clean-targets
+                   ;; need to add the compiled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                                      :target-path]}})
