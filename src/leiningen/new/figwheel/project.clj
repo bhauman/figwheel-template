@@ -7,7 +7,7 @@
   :min-lein-version "2.9.1"
 
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [org.clojure/clojurescript "1.10.773"]
+                 [org.clojure/clojurescript "1.10.775"]
                  [org.clojure/core.async  "0.4.500"]{{#react?}}
                  {{^bundle?}}[cljsjs/react "16.6.0-0"]
                  [cljsjs/react-dom "16.6.0-0"]{{/bundle?}}
@@ -39,8 +39,8 @@
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/{{^bundle?}}{{sanitized}}.js{{/bundle?}}{{#bundle?}}out/index.js{{/bundle?}}"
                            :output-dir "resources/public/js/compiled/out"
-                           {{#bundle?}}:bundle-cmd {:none ["npx" "webpack" "--mode=development"]
-                                        :default ["npx" "webpack"]}
+                           {{#bundle?}}:bundle-cmd {:none ["{{npx-command}}" "webpack" "--mode=development"]
+                                        :default ["{{npx-command}}" "webpack"]}
                            {{/bundle?}}:source-map-timestamp true
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools

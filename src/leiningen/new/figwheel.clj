@@ -5,6 +5,18 @@
 
 (def render (renderer "figwheel"))
 
+(defn os? []
+  (let [os-name
+        (-> (System/getProperty "os.name" "generic")
+            (.toLowerCase java.util.Locale/ENGLISH))
+        has? #(>= (.indexOf %1 %2) 0)]
+    (cond
+      (or (has? os-name "mac")
+          (has? os-name "darwin")) :macos
+      (has? os-name "win") :windows
+      (has? os-name "nux") :linux
+      :else :other)))
+
 ;; Check if om or reagent are in the options
 ;; Copied from: https://github.com/plexus/chestnut/blob/master/src/leiningen/new/chestnut.clj
 
@@ -88,6 +100,7 @@
                 :react?    (= :react framework)
                 :reagent?  (= :reagent framework)
                 :rum?      (= :rum framework)
+                :npx-command (if (= :windows (os?)) "npx.cmd" "npx")
                 :bundle?   bundle?
                 :reactdep? (boolean (#{:om :react :reagent} framework))}]
       (main/info (str "Generating fresh 'lein new' figwheel project.\n\n"
