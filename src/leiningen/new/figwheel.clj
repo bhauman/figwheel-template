@@ -47,7 +47,7 @@
 
 (def framework-opts (set (map #(str "--" %) supported-frameworks)))
 
-(def supported-attributes #{"no-bundle"})
+(def supported-attributes #{"bundle"})
 
 (def attribute-opts (set (map #(str "+" %) supported-attributes)))
 
@@ -84,7 +84,7 @@
      --react    which adds a minimal Ract application in core.cljs
      --reagent  which adds a minimal Reagent application in core.cljs
      --rum      which adds a minimal Rum application in core.cljs
-     +no-bundle don't include npm bundle support
+     +bundle    include npm bundle support
    Only one option can be specified at a time. If no option is specified,
    nothing but a print statment is added in core.cljs"
   [name & opts]
@@ -94,7 +94,7 @@
        (str "Cannot name a figwheel project \"figwheel\" the namespace will clash.\n"
             "Please choose a different name, maybe \"tryfig\"?")))
     (let [{:keys [framework attributes]} (parse-opts opts)
-          bundle? (not (get attributes :no-bundle))
+          bundle? (get attributes :bundle false)
           data {:name      name
                 :sanitized (name-to-path name)
                 :react?    (= :react framework)

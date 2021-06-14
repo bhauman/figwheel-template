@@ -14,7 +14,7 @@ Make sure you have the [latest version of leiningen installed](https://github.co
     --react     Adds a bare bones React app, including Sablono.
     --reagent   Adds a bare bones Reagent app.
     --rum       Adds a bare bones Rum app.
-    +no-bundle  Generates a project without npm and webpack support.
+    +bundle     Generates a project with npm and webpack support.
 
 Include the options using `--` to separate them from Leiningens
 options, like so
